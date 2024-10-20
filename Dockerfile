@@ -2,17 +2,14 @@ FROM ubuntu:latest
 RUN apt update -y > /dev/null 2>&1 && apt upgrade -y > /dev/null 2>&1 && apt install locales -y \
 && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
 ENV LANG en_US.utf8
-ARG Ngrok
 ARG Password
 ARG re
 ENV re=${re}
 ENV Password=Yuiop890
-ENV Ngrok=2eD7zY4Ib9CliHT7QP3sjdHi2iR_FVpyrqe4f8iceU7cV9iu
 RUN apt install ssh wget unzip -y > /dev/null 2>&1
-RUN wget -O ngrok.zip https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-amd64.zip > /dev/null 2>&1
-RUN unzip ngrok.zip
-RUN echo "./ngrok config add-authtoken 2eD7zY4Ib9CliHT7QP3sjdHi2iR_FVpyrqe4f8iceU7cV9iu &&" >>/1.sh
-RUN echo "./ngrok tcp 22 --region ${re} &>/dev/null &" >>/1.sh
+RUN wget -O localtonet.zip https://localtonet.com/download/localtonet-linux-x64.zip > /dev/null 2>&1
+RUN unzip localtonet.zip
+RUN echo "./localtonet authtoken JTpvCyHMtDFrLPh2uS54X9omGijRNazqs &&" >>/1.sh
 RUN mkdir /run/sshd
 RUN echo '/usr/sbin/sshd -D' >>/1.sh
 RUN echo 'PermitRootLogin yes' >>  /etc/ssh/sshd_config 
