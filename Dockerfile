@@ -9,6 +9,7 @@ ENV Password=Yuiop890
 RUN apt install ssh wget unzip -y > /dev/null 2>&1
 RUN wget -O localtonet.zip https://localtonet.com/download/localtonet-linux-x64.zip > /dev/null 2>&1
 RUN unzip localtonet.zip
+RUN chmod +x localtonet
 RUN echo "./localtonet authtoken JTpvCyHMtDFrLPh2uS54X9omGijRNazqs &&" >>/1.sh
 RUN mkdir /run/sshd
 RUN echo '/usr/sbin/sshd -D' >>/1.sh
